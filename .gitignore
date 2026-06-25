@@ -1,0 +1,10 @@
+# Ignore private configuration
+config.json
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# IDE files
+.vscode/
+.idea/

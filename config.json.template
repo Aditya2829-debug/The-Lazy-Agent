@@ -1,0 +1,12 @@
+{
+  "leetcode": {
+    "enabled": true,
+    "leetcode_session": "YOUR_LEETCODE_SESSION_COOKIE_HERE",
+    "csrf_token": "YOUR_CSRF_TOKEN_HERE"
+  },
+  "github": {
+    "enabled": true,
+    "repo_path": ".",
+    "branch": "main"
+  }
+}
