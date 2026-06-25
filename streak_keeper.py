@@ -144,7 +144,9 @@ def get_submission_code(submission_id, cookies):
     query submissionDetails($submissionId: Int!) {
       submissionDetails(submissionId: $submissionId) {
         code
-        lang
+        lang {
+          name
+        }
         question {
           questionId
           titleSlug
@@ -392,11 +394,13 @@ def run_streak():
                             question_id = get_question_id(random_sub["titleSlug"], cookies)
                             
                         if question_id:
+                            lang_obj = detail.get("lang")
+                            lang_name = lang_obj.get("name") if isinstance(lang_obj, dict) else lang_obj
                             selected_problem = {
                                 "title": random_sub["title"],
                                 "titleSlug": random_sub["titleSlug"],
                                 "questionId": question_id,
-                                "lang": detail.get("lang"),
+                                "lang": lang_name,
                                 "code": detail.get("code")
                             }
                         else:
