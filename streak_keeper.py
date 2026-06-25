@@ -308,7 +308,8 @@ def commit_and_push_streak(repo_path, branch, problem_title, problem_slug):
 def create_scheduler_task(time_str):
     script_path = os.path.abspath(__file__)
     python_exe = sys.executable
-    task_name = "LeetCodeGitHubStreakKeeper"
+    time_suffix = time_str.replace(":", "")
+    task_name = f"LeetCodeGitHubStreakKeeper_{time_suffix}"
     
     # Constructing a robust scheduled task command with double-quoted paths for Windows
     cmd = f'schtasks /create /tn "{task_name}" /tr "\\"{python_exe}\\" \\"{script_path}\\" --run" /sc daily /st {time_str} /f'
@@ -332,10 +333,21 @@ def create_scheduler_task(time_str):
         log_info("Try running this shell command with administrator rights if needed.")
 
 def remove_scheduler_task():
-    task_name = "LeetCodeGitHubStreakKeeper"
-    cmd = f'schtasks /delete /tn "{task_name}" /f'
+    log_info("Deleting all registered Windows Task Scheduler tasks matching 'LeetCodeGitHubStreakKeeper*'...")
+    cmd = 'powershell -Command "Get-ScheduledTask -TaskName \'LeetCodeGitHubStreakKeeper*\' | Unregister-ScheduledTask -Confirm:$false"'
+    cmd_legacy = 'schtasks /delete /tn "LeetCodeGitHubStreakKeeper" /f'
     
-    log_info(f"Deleting Windows Task Scheduler task '{task_name}'...")
+    try:
+        subprocess.run(
+            cmd_legacy,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+    except Exception:
+        pass
+
     try:
         result = subprocess.run(
             cmd,
@@ -345,9 +357,9 @@ def remove_scheduler_task():
             text=True,
             check=True
         )
-        log_success(f"Task removed successfully!\n{result.stdout.strip()}")
+        log_success("All matching tasks removed successfully!")
     except subprocess.CalledProcessError as e:
-        log_warn("Failed to delete the task or it does not exist.")
+        log_warn("Failed to delete tasks or none were found.")
         log_error(f"Stderr: {e.stderr.strip()}")
 
 # --- MAIN RUNNER ---
