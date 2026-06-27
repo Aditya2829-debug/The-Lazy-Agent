@@ -325,6 +325,12 @@ def create_scheduler_task(time_str):
             check=True
         )
         log_success(f"Task scheduled successfully!\n{result.stdout.strip()}")
+        
+        # Configure task to allow running on battery power
+        log_info("Configuring task to run on battery power...")
+        ps_cmd = f'powershell -Command "Set-ScheduledTask -TaskName \'{task_name}\' -Settings (New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries)"'
+        subprocess.run(ps_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        
         log_info("You can verify it in Windows Task Scheduler or query it using:")
         print(f"  schtasks /query /tn \"{task_name}\"")
     except subprocess.CalledProcessError as e:
