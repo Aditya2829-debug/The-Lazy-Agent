@@ -113,3 +113,4 @@ python streak_keeper.py --unschedule
 * 2026-06-27 22:32:19 Local Time - Resubmitted LeetCode problem: [Missing Number](https://leetcode.com/problems/missing-number/)
 * 2026-06-28 16:11:06 Local Time - Resubmitted LeetCode problem: [Create Target Array in the Given Order](https://leetcode.com/problems/create-target-array-in-the-given-order/)
 * 2026-06-28 22:00:14 Local Time - Resubmitted LeetCode problem: [Create Target Array in the Given Order](https://leetcode.com/problems/create-target-array-in-the-given-order/)
+* 2026-06-29 14:00:14 Local Time - Resubmitted LeetCode problem: [Missing Number](https://leetcode.com/problems/missing-number/)
