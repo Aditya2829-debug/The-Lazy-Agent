@@ -138,3 +138,4 @@ python streak_keeper.py --unschedule
 * 2026-07-09 15:31:45 Local Time - Resubmitted LeetCode problem: [Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/)
 * 2026-07-09 15:44:11 Local Time - Resubmitted LeetCode problem: [Two Sum](https://leetcode.com/problems/two-sum/)
 * 2026-07-10 14:00:16 Local Time - Resubmitted LeetCode problem: [Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/)
+* 2026-07-10 15:44:12 Local Time - Resubmitted LeetCode problem: [Missing Number](https://leetcode.com/problems/missing-number/)
